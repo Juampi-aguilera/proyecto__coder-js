@@ -1,0 +1,719 @@
+// variables
+
+// $color__primario:#FFF1CE;
+// $color__secundario:#184B47;
+
+$color__primario:#EDE6DB;
+$color__secundario:#1A3C40;
+$color__terciario:#EFDFBF;
+
+//map
+
+$padding:(
+    footer:45px,
+);
+
+//mixin
+
+@mixin flex-center {
+    display: flex;
+    align-items: center;
+}
+
+//scss
+
+@font-face {
+    font-family: 'Amsterdam One';
+    src: url(../fonts/AmsterdamOne-eZ12l.ttf);
+}
+@font-face {
+    font-family: 'Dancing Script';
+    src: url(../fonts/DancingScript-Regular.ttf);
+}
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
+
+*{
+    margin: 0;
+    padding: 0;
+}
+body{
+    background-color: $color__primario;
+    /* padding para que que se ajuste al nav */
+    padding-top: 81px;
+    font-family: 'Times New Roman', Times, serif;
+    color: black;
+}
+/* barra nav del menu */
+
+nav{
+    background-color: $color__secundario;
+    font-size: 20px;
+    padding: 18px;
+    height: 81px;
+}
+
+.menu-desplegable{
+    background-color: #0F302D;
+}
+
+.navbar-brand{
+    margin-left: 120px;
+    color: $color__primario;
+    &:hover{
+        color: $color__primario;
+    }
+}
+
+
+.navbar-nav{
+    margin-right: 70px;
+}
+
+.nav-link{
+    height: 45px;
+    width: 190px;
+    background: none;
+    border: 2px solid;
+    color: white;
+    text-align: center;
+    font-size: 17px;
+    margin-right: 9px;
+    transition: all .3s;
+    font-family: Arial, Helvetica, sans-serif;
+    &:hover{
+        color: $color__secundario;
+        background-color: white;
+        border: 2px solid white;
+        font-weight: 500;
+    }
+}
+
+
+/* main */
+
+main{
+    margin-bottom: 50px;
+}
+p{
+    font-size: 1.3rem;
+    text-align: justify;
+}
+.titulo__principal{
+    text-align: center;
+    font-size: 60px;
+    font-family: 'Dancing Script';
+    margin: 80px;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    padding: 50px;
+    padding-top: 40px;
+    border-radius: 10px;
+    background-color: $color__terciario;
+    font-weight: 600;
+}
+.btn-wsp{
+    position: fixed;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    bottom: 30px;
+    right: 30px;
+    background-color: #0df053;
+    color: #fff;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+    z-index: 9999;
+    transition: 0.3s;
+    svg{
+        width: 30px;
+        height: 30px;
+    }
+    &:hover{
+        text-decoration: none;
+        color: #0df053;
+        background-color: #fff;
+    }
+}
+
+
+/* index */
+
+.titulo__index{
+    background-image: url(../image/fondo.jpg);
+    background-position: top;
+    background-size: cover;
+    padding-top: 70px;
+    padding-left: 20px;
+    padding-bottom: 250px;
+    h1{
+        font-size: 80px;
+        font-family: 'Amsterdam One';
+        text-shadow: 2px 2px white;
+        text-align: left;
+        .apellido{
+            display: inline-block;
+        }
+    }
+    h2{
+        padding-top: 60px;
+        font-size: 35px;
+        font-family: sans-serif;
+        word-spacing:5px;
+        margin-left: 10px;
+        font-weight: 500;
+    }
+}
+
+.presentacion p{
+    text-align:center;
+    margin: 40px;
+    font-size: 27px;
+    font-style: italic;
+    font-family: sans-serif;
+    padding: 30px;
+    background-color: #E4DFDF;
+    border: #3D5145 4px solid;
+    line-height: 1.3;
+}
+
+.section__index{
+    margin: 20px 60px;
+    @include flex-center;
+    flex-flow: wrap row;
+    justify-content: space-evenly;
+}
+.formacion{
+    text-align: justify;
+    font-family:sans-serif;
+    width:60%;
+    font-size: 25px;
+}
+.foto__index{
+    height: 300px;
+    border: 2px solid black;
+}
+
+/* sobre mi */
+
+.article__bio{
+    margin: 20px 60px;
+    @include flex-center;
+    max-height: 630px;
+}
+.bio{
+    font-size: 25px;
+    text-align: justify;
+    margin-left: 20px;
+    padding-right: 20px;
+    max-height: 630px;
+}
+
+.foto__info{
+    height:450px;
+    border: 4px solid black;
+    border-radius: 10px;
+}
+
+.fotos__info--mobile{
+    display: none;
+} 
+
+/* servicios */
+
+.titulo__principal--servicios{
+    margin-bottom: 50px;
+    padding: 30px;
+    padding-top: 25px;
+    h1{
+        font-size: 60px;
+        font-family: 'Dancing Script';
+        padding-bottom: 7px;
+        font-weight: 600;
+    }
+    h2{
+        font-size: 25px;
+        font-family: 'Times New Roman', Times, serif;
+    }
+}
+
+.container__productos{
+    display: flex;
+    justify-content: space-evenly;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+.producto{
+    height: 400px;
+    border: $color__secundario 4px solid;
+    transition: all .5s;
+    margin: 7px 10px;
+    cursor: pointer;
+    &:hover{
+        transform: scale(1.1,1.1);
+    }
+}
+
+/* blog y herramientas */
+
+.article__blog{
+    margin: 20px 60px;
+    @include flex-center;
+}
+.foto1__blog{
+    height:330px;
+    border: 4px solid black;
+}
+.texto1__blog{
+    font-size: 25px;
+    text-align: justify;
+    margin-left: 20px;
+    padding-right: 25px;
+    h3{
+        padding-bottom: 50px;
+        font-size: 33px;
+    }
+}
+
+.titulo2__blog{
+    font-size: 35px;
+    margin: 70px;
+    margin-bottom: 40px;
+}
+iframe{
+    margin: 10px 50px;
+    width:560px; 
+    height:315px;
+}
+
+/* contacto */
+
+.body__contacto{
+    background-image: url(https://www.tuexpertomovil.com/wp-content/uploads/2022/01/25-fondos-de-pantalla-para-movil-de-naturaleza-para-2022.jpg);
+    background-size: cover;
+    background-position: bottom;
+    background-attachment: fixed;
+    margin: 0;
+    min-height: 93.4vh;
+    padding-top: 65px;
+}
+form{
+    width:450px;
+    margin: auto;
+    background: rgba(0, 0, 0, 0.4);
+    padding: 10px 20px;
+    box-sizing: border-box;
+    border-radius: 7px;
+    font-family: monospace;
+    h1{
+        color: white;
+        text-align: center;
+        margin: 10px;
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+}
+
+input{
+    width: 100%;
+    margin-bottom: 20px;
+    padding: 7px;
+    box-sizing: border-box;
+    font-size: 17px;
+    border: none;
+    outline:none;
+    &:focus{
+        outline: 2px solid $color__secundario;
+    }
+}
+textarea{
+    @extend input;
+    min-height: 100px;
+    max-height: 300px;
+    max-width: 100%;
+    min-width: 100%;
+}
+#btn__form{
+    background: #31384A;
+    color: white;
+    padding: 20px;
+    cursor: pointer;
+}
+
+/* footer */
+
+footer{
+    background-color: $color__secundario;
+    color: white;
+    padding: 56px;
+    padding-bottom: 20px;
+}
+
+.footer__content h5{
+    font-size: 17px;
+}
+
+.footer__contacto{
+    padding-left: map-get($padding, footer);
+    a{
+        text-decoration: none;
+    }
+}
+
+.redes__footer{
+    fill: $color__primario;
+    width: 35px;
+    height: 35px;
+    padding: 6px;
+    border-radius: 40%;
+    transition: 0.3s;
+    &:hover{
+        background-color: $color__primario;
+        fill: $color__secundario;
+    }
+}
+
+.firma{
+    text-align: right;
+    padding-right: map-get($padding, footer);
+}
+
+#copyright{
+    text-align: center;
+    padding-top: 35px;
+    font-size: 15px;
+}
+
+
+/* VISTA TABLET Y MOBILE */
+
+@media screen and (max-width:1200px) {
+    nav{
+        height: 90px;
+    }
+    .navbar-brand{
+        margin-left: 50px;
+    }
+
+    /* index mobile */
+
+    .titulo__index{
+        h1{
+        font-size: 65px;
+        line-height: 2;
+        } 
+        h2{
+            font-size: 30px;
+        }
+    }
+     
+    .presentacion-grid{
+        display: grid;
+        grid-template-columns: auto 1fr auto;
+    }
+    .foto__index{
+        margin-left: 15px;
+    }
+
+    /* sobre mi mobile */
+
+    .bio{
+        font-size: 20px;
+        margin-left: 10px;
+        padding-right: 10px;
+    }
+
+    .foto__info {
+        height:350px;
+        border: 4px solid black;
+        border-radius: 10px;
+    }
+
+    /* servicios mobile */
+
+    .container__productos{
+        display: grid;
+        grid-template-columns: auto;
+        gap: 20px;
+    }
+
+    .producto{
+        max-height: 450px;
+        height: 85vw;
+    }
+
+
+    /* blog y herramientas mobile */
+
+    .article__blog{
+        margin: 20px 30px;
+    }
+    .foto1__blog{
+        height:250px;
+    }
+    .texto1__blog{
+        font-size: 18px;
+        padding-right: 10px;
+        h3{
+            font-size: 28px;
+            text-align: left;
+        }
+    } 
+
+    /* contacto mobile */
+
+    form{
+        width: 75%;
+    }
+
+}
+
+/* large devices */
+
+@media (max-width: 992px){
+
+    .offcanvas-title{
+        margin-left: 15px;
+        color: $color__primario;
+    }
+
+    .offcanvas-body{
+        display: grid;
+        grid-template-columns: 1fr auto 1fr;
+    }
+
+    .navbar-nav{
+        grid-column: 2/3;
+        margin-right: 0%;
+        margin-top: 10px;
+    }
+
+    .nav-link{
+        border-radius: 40px;
+        margin-bottom: 25px;
+        margin-right: 0%;
+    }
+
+    /* sobre mi */
+
+    .article__bio{
+        margin: 25px 20px;
+    }
+
+    .bio{
+        font-size: 16px;
+    }
+
+    .foto__info, .foto__info--mobile{
+        height:250px;
+        border: 4px solid black;
+        border-radius: 10px;
+    }
+
+}
+
+/* Vista solo Mobile */
+
+@media screen and (max-width:773px){
+
+    .titulo__principal{
+        margin: 50px 10px;
+    }
+
+    /* index */
+
+    .titulo__index{
+        h1{
+        font-size: 50px;
+        } 
+        h2{
+            font-size: 25px;
+        }
+    }
+    .section__index{
+        margin: 20px 30px;
+    }
+    .formacion{
+        width:90%;
+        font-size: 20px;
+    }
+
+    .presentacion p{
+        font-size: 23px;
+    }
+    .foto__index {
+        margin-left: 0px;
+    }    
+
+    /* sobre mi */
+
+    .article__bio{
+        margin: 25px 15px;
+    }
+
+    .foto__info{
+        display: none;
+    }
+
+    .fotos__info--mobile{
+        @include flex-center;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: space-evenly; 
+        .foto__info--mobile:first-child{
+            width: 190px;
+            height: auto;
+        }
+    } 
+
+    .foto__info--mobile{
+        justify-self: center;
+    }
+
+    .color__fondo--bio{
+        display: inline-block;
+        background-color: $color__terciario;
+        margin: 0%;
+        padding: 25px 15px;
+    }
+
+    /* blog */
+
+    .foto1__blog {
+        height: 200px;
+    }
+
+    .titulo2__blog {
+        margin-bottom: 20px;
+    }
+
+    iframe{
+        width:400px; 
+        height:225px;
+    }
+
+
+}
+
+@media screen and (max-width:600px){
+
+    /* margen logo */
+
+    .navbar-brand{
+        margin-left: 15px;
+    }
+
+    /* index */
+
+    .presentacion p{
+
+        font-size: 21px;
+
+    }
+
+    /* blog */
+
+    .foto1__blog {
+        display:none;
+    }
+
+    .titulo2__blog {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+
+    iframe{
+        width:70vw; 
+        height:40vw;
+        overflow: hidden;
+    }
+
+    /* contacto */
+    
+    form{
+        width: 90%;
+    }
+}
+
+@media screen and (max-width:576px) {
+
+    /* index */
+
+    .titulo__index h2 {
+        font-size: 22px;
+    }
+
+    .presentacion p{
+        padding: 30px 15px;
+    }
+
+    /* footer */
+    
+    .footer__contacto{
+        padding-left: 25px;
+    }    
+    
+    .firma{
+        text-align: left;
+        padding-left: 25px;
+        padding-top: 18px;
+    }
+
+}
+
+@media screen and (max-width:400px){
+
+    /* index */
+
+    .titulo__index{
+        padding-left: 15px;
+        h2{
+            margin-left: 0%;
+        }
+    }
+
+    /* blog */
+
+    .titulo__principal--blog{
+        font-size: 50px;
+        padding: 30px;
+        padding-top: 40px;
+    }
+
+    iframe{
+        margin: 10px 30px;
+    }
+
+    /* footer */
+
+    .footer__content h5 {
+        font-size: 15px;
+    }
+
+    #copyright{
+        font-size: 13px;
+    }
+
+}
+
+@media screen and (max-width:330px){
+
+    .foto__index{
+        height: 250px;
+    }
+}
+
+/* VISTA DESKTOP */
+
+@media screen and (min-width:1200px){
+    
+    .presentacion-grid{
+        display: grid;
+        grid-template-columns: 150px 1fr 150px;
+    }
+    .presentacion{
+        grid-area: presentacion;
+        grid-column: 2/3;
+    }
+
+}
