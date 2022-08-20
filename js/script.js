@@ -47,5 +47,3 @@ sesionX4.addEventListener("click",function(){
 sesionX8.addEventListener("click",function(){
     agregarAlCarrito(servicio3);
 })
-
-//fsdfvsd
