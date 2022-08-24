@@ -232,6 +232,13 @@ p {
   transform: scale(1.1, 1.1);
 }
 
+.modal-content {
+  background-color: #EFDFBF;
+}
+.modal-content .modal-footer button {
+  background-color: #1A3C40;
+}
+
 /* blog y herramientas */
 .article__blog {
   margin: 20px 60px;

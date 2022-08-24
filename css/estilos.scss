@@ -253,6 +253,13 @@ p{
         transform: scale(1.1,1.1);
     }
 }
+.modal-content{
+    background-color: $color__terciario;
+    .modal-footer button{
+        background-color: $color__secundario;
+    }
+}
+
 
 /* blog y herramientas */
 
