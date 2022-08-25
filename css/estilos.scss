@@ -260,6 +260,32 @@ p{
     }
 }
 
+#icono__carrito--id{
+    position: fixed;
+    width: 55px;
+    height: 55px;
+    line-height: 55px;
+    top: 120px;
+    right: 30px;
+    background-color: $color__terciario;
+    color: $color__secundario;
+    border-radius: 50px;
+    text-align: center;
+    box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+    z-index: 999;
+    transition: 0.3s;
+    cursor: pointer;
+    svg{
+        width: 33px;
+        height: 33px;
+    }
+    &:hover{
+        text-decoration: none;
+        color: $color__terciario;
+        background-color: $color__secundario;
+    }
+}
+
 
 /* blog y herramientas */
 

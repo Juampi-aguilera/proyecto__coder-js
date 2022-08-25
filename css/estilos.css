@@ -239,6 +239,32 @@ p {
   background-color: #1A3C40;
 }
 
+#icono__carrito--id {
+  position: fixed;
+  width: 55px;
+  height: 55px;
+  line-height: 55px;
+  top: 120px;
+  right: 30px;
+  background-color: #EFDFBF;
+  color: #1A3C40;
+  border-radius: 50px;
+  text-align: center;
+  box-shadow: 0px 1px 10px rgba(0, 0, 0, 0.4);
+  z-index: 999;
+  transition: 0.3s;
+  cursor: pointer;
+}
+#icono__carrito--id svg {
+  width: 33px;
+  height: 33px;
+}
+#icono__carrito--id:hover {
+  text-decoration: none;
+  color: #EFDFBF;
+  background-color: #1A3C40;
+}
+
 /* blog y herramientas */
 .article__blog {
   margin: 20px 60px;
