@@ -10,7 +10,7 @@ let contenedorIconoCarrito=document.querySelector("#icono__carrito")
 let borrarCarrito=document.createElement("button");
 
 //agregando datos del carrito al storage
-carrito=JSON.parse(localStorage.getItem("carrito"));
+carrito=JSON.parse(localStorage.getItem("carrito")) || 0;
 
 //botones de agregar al carrito
 const sesionX1 = document.querySelector("#agregar__sesionX1");
@@ -50,10 +50,10 @@ actualizarCarrito();
 
 // funcion flecha para agregar un producto al carrito
 const agregarAlCarrito = (producto) => {
-    carrito+=producto.precio;
+    let {precio:precioProducto}=producto; //Desestructuracion con alias
+    carrito+=precioProducto;
     actualizarCarrito();
     localStorage.setItem("carrito",carrito);
-
 }
 
 // cuando se toca el boton se agrega al carrito
