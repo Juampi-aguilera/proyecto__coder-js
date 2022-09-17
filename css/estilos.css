@@ -328,7 +328,7 @@ form h1 {
   margin-bottom: 20px;
 }
 
-input, textarea {
+.input__contacto, textarea {
   width: 100%;
   margin-bottom: 20px;
   padding: 7px;
@@ -337,7 +337,7 @@ input, textarea {
   border: none;
   outline: none;
 }
-input:focus, textarea:focus {
+.input__contacto:focus, textarea:focus {
   outline: 2px solid #1A3C40;
 }
 

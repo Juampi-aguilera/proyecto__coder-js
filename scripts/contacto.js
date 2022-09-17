@@ -1,19 +1,24 @@
+//inicializamos la API
 emailjs.init('LfsJWeBH_5GmVbGGx');
 
 const btn = document.getElementById('btn__form');
 
-document.getElementById('form')
- .addEventListener('submit', function(event) {
-   event.preventDefault();
+document.getElementById('form').addEventListener('submit', function(event) {
 
-   btn.value = 'Sending...';
+  event.preventDefault();
 
-   const serviceID = 'service_te8rlzr';
-   const templateID = 'template_1ef7yt6';
+  btn.value = 'Sending...';
 
-   emailjs.sendForm(serviceID, templateID, this)
+  // información para la base de datos de emailJS
+  const serviceID = 'service_te8rlzr';
+  const templateID = 'template_1ef7yt6';
+
+  //envia el formulario
+  emailjs.sendForm(serviceID, templateID, this)
     .then(() => {
       btn.value = 'ENVIAR';
+
+      // confirmación de envío de mail con toastify
       Toastify({
         text: "Mensaje enviado!",
         duration: 2000,
@@ -29,7 +34,8 @@ document.getElementById('form')
           padding:"15px 20px"
         },
       }).showToast();
-    }, (err) => {
+
+    }, (err) => {  // si hay un error
       btn.value = 'ENVIAR';
       alert(JSON.stringify(err));
     });

@@ -348,7 +348,7 @@ form{
     }
 }
 
-input{
+.input__contacto{
     width: 100%;
     margin-bottom: 20px;
     padding: 7px;
@@ -361,7 +361,7 @@ input{
     }
 }
 textarea{
-    @extend input;
+    @extend .input__contacto;
     min-height: 100px;
     max-height: 300px;
     max-width: 100%;
