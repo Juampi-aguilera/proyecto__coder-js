@@ -1,0 +1,19 @@
+[{
+        "id": 1,
+        "nombre": "Sesión Individual",
+        "tipo": "Sesion",
+        "precio": 2500
+    },
+    {
+        "id": 2,
+        "nombre": "Pack de Cuatro Sesiones",
+        "tipo": "Sesion",
+        "precio": 8000
+    },
+    {
+        "id": 3,
+        "nombre": "Pack de Ocho Sesiones",
+        "tipo": "Sesion",
+        "precio": 15200
+    }
+]

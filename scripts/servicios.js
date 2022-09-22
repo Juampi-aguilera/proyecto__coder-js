@@ -3,45 +3,48 @@ let servicios = [];
 
 // carrito de compras
 let contenedorIconoCarrito=document.querySelector("#icono__carrito");
-let contenedorCarrito2=document.querySelector("#items");
+let contenedorCarrito=document.querySelector("#items");
 let contenedorCarritoTotal=document.querySelector("#carrito__total");
 let tablaFooter=document.querySelector("#tabla__footer");
-
-//funcionalidad para el carrito
-let borrarCarrito=document.createElement("button"); //sacar
+let botonFinalizarCompra=document.querySelector("#boton__finalizar");
 
 //agregando datos del carrito al storage
 carritoTotal=JSON.parse(localStorage.getItem("carritoTotal")) || 0;
 carrito=JSON.parse(localStorage.getItem("carrito")) || [];
 
+// llamada al json local "servicios"
+async function obtenerJSONServicios(){
+    const URLJSON = "../scripts/servicios.json";
+    const resp = await fetch (URLJSON);
+    const data = await resp.json();
+    servicios = data;
+    funcionalidadAlAgregado()
+}
+obtenerJSONServicios();
+
+//clase para los productos del carrito
 class ProductosCarrito{
     constructor(producto,cantidad){
-        this.producto=producto,
-        this.cantidad=cantidad
+        this.producto = producto,
+        this.cantidad = cantidad
     }
 }
 
-//botones de agregar al carrito
-const sesionX1 = document.querySelector("#agregar__sesionX1");
-const sesionX4 = document.querySelector("#agregar__sesionX4");
-const sesionX8 = document.querySelector("#agregar__sesionX8");
-
-// creamos una clase servicio con todos las características del mismo
-class Servicio{
-    constructor(id,nombre,tipo,precio){
-        this.id=id,
-        this.nombre=nombre,
-        this.tipo=tipo,
-        this.precio=precio
-    }
+// cuando se toca el boton se agrega al carrito
+function eventoAgregarCarrito(boton,servicio){
+    boton.addEventListener("click",function(){
+        agregarAlCarrito(servicio);
+    });
 }
 
-let servicio1=new Servicio(1,"Sesión Individual","Sesion",2500);
-let servicio2=new Servicio(2,"Pack de Cuatro Sesiones","Sesion",8000);
-let servicio3=new Servicio(3,"Pack de Ocho Sesiones","Sesion",15200);
+//aplicando el evento agregar al carrito a los respectivos botones
+function funcionalidadAlAgregado(){
+    servicios.forEach(servicio =>{
+        let botonServicio = document.querySelector(`#agregar__servicio-id${servicio.id}`);
+        eventoAgregarCarrito(botonServicio,servicio);
+    })    
+}
 
-//pusheamos los servicios al array
-servicios.push(servicio1,servicio2,servicio3);
 
 // si hay algo en el carrito este se muestra
 const mostrarCarrito=_=>{
@@ -56,41 +59,42 @@ mostrarCarrito();
 
 // se agrega el carrito al DOM
 function actualizarCarrito(){
-    contenedorCarrito2.innerHTML="";
-
+    contenedorCarrito.innerHTML="";
     carritoTotal=0;
+
     // imprime cada producto del carrito en su respectiva linea
-    carrito.forEach(producto=>{
+    carrito.forEach(elemento=>{
         let tablaCarrito=document.createElement("tr");
-        tablaCarrito.innerHTML=`<td>${producto.producto.nombre}</td>
-                      <td>$${producto.producto.precio}</td>       
-                      <td><input type="number" id="cantidad__producto--id-${producto.producto.id}" value="${producto.cantidad}" min="1" style="width: 35px; height=32"></td> 
-                      <td>$${producto.cantidad*producto.producto.precio}</td>
+        let {producto:elementoAImprimir}=elemento; //Desestructuración con alias.
+        tablaCarrito.innerHTML=`<td>${elementoAImprimir.nombre}</td>
+                      <td>$${elementoAImprimir.precio}</td>       
+                      <td><input type="number" id="cantidad__producto--id-${elementoAImprimir.id}" value="${elemento.cantidad}" min="1" style="width: 35px; height=32"></td> 
+                      <td>$${elemento.cantidad*elementoAImprimir.precio}</td>
                       <td>
-                        <button class="btn btn-danger" id="eliminar__producto--id-${producto.producto.id}">
+                        <button class="btn btn-danger" id="eliminar__producto--id-${elementoAImprimir.id}">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                 <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                             </svg>
                         </button>
                       </td>`;
 
-        contenedorCarrito2.append(tablaCarrito);
+        contenedorCarrito.append(tablaCarrito);
         
         //se suman los productos al carrito total
-        carritoTotal+=producto.cantidad*producto.producto.precio;
+        carritoTotal+=elemento.cantidad*elementoAImprimir.precio;
 
         // si se le suma la cantidad cambia el precio total
-        let inputCantidadProductos=document.getElementById(`cantidad__producto--id-${producto.producto.id}`);
+        let inputCantidadProductos=document.getElementById(`cantidad__producto--id-${elementoAImprimir.id}`);
         inputCantidadProductos.addEventListener("change",function(ev){
             let nuevaCantidad=ev.target.value;
-            producto.cantidad=nuevaCantidad;
+            elemento.cantidad=nuevaCantidad;
             actualizarCarrito()
         })
 
         //borrar un producto del carrito
-        let eliminar__producto=document.querySelector(`#eliminar__producto--id-${producto.producto.id}`);
+        let eliminar__producto=document.querySelector(`#eliminar__producto--id-${elementoAImprimir.id}`);
         eliminar__producto.addEventListener("click",function(){
-            removerProductoCarrito(producto);
+            removerProductoCarrito(elemento);
         })
 
     });
@@ -127,16 +131,14 @@ function removerProductoCarrito(productoAEliminar){
 
 // función flecha para agregar un producto al carrito
 const agregarAlCarrito = (producto) => {
-    let {precio:precioProducto}=producto; //Desestructuracion con alias. sacar? o poner en otro lado
-    
     localStorage.setItem("carritoTotal",carritoTotal);
-    
+
     //busca si el producto a agregar no esta actualmente agregado
     let elementoExistente=carrito.find((elemento)=>elemento.producto.id==producto.id);
 
     // si esta agregado le suma 1 a la cantidad
     if(elementoExistente){
-        elementoExistente.cantidad+=1;
+        elementoExistente.cantidad=parseInt(elementoExistente.cantidad) + 1;
     }else{
         //agrega el producto al array carrito
         carrito.push(new ProductosCarrito(producto,1));
@@ -162,14 +164,8 @@ const agregarAlCarrito = (producto) => {
       }).showToast();
 }
 
-// cuando se toca el boton se agrega al carrito
-function eventoAgregarCarrito(boton,servicio){
-    boton.addEventListener("click",function(){
-        agregarAlCarrito(servicio);
-    });
-}
-
-//ejecucion de la funcion para el evento de agregar al carrito
-eventoAgregarCarrito(sesionX1,servicio1)
-eventoAgregarCarrito(sesionX4,servicio2)
-eventoAgregarCarrito(sesionX8,servicio3)
+boton__finalizar.addEventListener("click",function(){
+    window.location.href = `https://api.whatsapp.com/send?phone=541139019897&text=Hola vero! Realice una compra via web con un total de $${carritoTotal}. Me gustaría proceder con el pago.`;
+    localStorage.removeItem("carrito");
+    localStorage.removeItem("carritoTotal");
+})
