@@ -164,6 +164,7 @@ const agregarAlCarrito = (producto) => {
       }).showToast();
 }
 
+//cuando se finaliza la compra se borra el carrito y te redirige a un chat predefinido con la vendedora
 boton__finalizar.addEventListener("click",function(){
     window.location.href = `https://api.whatsapp.com/send?phone=541139019897&text=Hola vero! Realice una compra via web con un total de $${carritoTotal}. Me gustaría proceder con el pago.`;
     localStorage.removeItem("carrito");
